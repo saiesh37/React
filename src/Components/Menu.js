@@ -25,22 +25,23 @@ const Menu=()=>{
     console.log(resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
     console.log("cat",categories)
    
- return (
-        <div className="text-center ">
-            <h1 className="font-bold my-6">{name}</h1>
-            <p className="font-bold text-lg">{cuisines.join(" , ")}- {costForTwoMessage}</p>
-            <h2 className="my-4 text-blue-500">Menu</h2> 
-             <ul>           
-                {categories.map((c,index)=>(
-                    <li key={c?.card.card.title}>
-                       <RestaurantCategory  categories={c?.card?.card} items={index===showIndex ? true : false}
-                       setShowIndex={()=>(setShowIndex(index))}/>
-                       </li>
-                ))}
-            </ul>           
-        </div>
-
-        
+return (
+    <div className="text-center ">
+        <h1 className="font-bold my-6">{name}</h1>
+        <p className="font-bold text-lg">{cuisines.join(" , ")}- {costForTwoMessage}</p>
+        <h2 className="my-4 text-blue-500">Menu</h2> 
+        <ul>           
+            {categories.map((c, index) => (
+                <li key={c?.card.card.title}>
+                    <RestaurantCategory 
+                        categories={c?.card?.card} 
+                        items={index === showIndex} 
+                        setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
+                    />
+                </li>
+            ))}
+        </ul>           
+    </div>
 )
 }
 export default Menu;
